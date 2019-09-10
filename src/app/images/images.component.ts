@@ -7,10 +7,15 @@ import { ImageService } from '../service/image.service';
   styleUrls: ['./images.component.css']
 })
 export class ImagesComponent implements OnInit {
+  images: any[];
+  constructor(private image: ImageService) {}
 
-  constructor(private image:ImageService) { }
-
-  ngOnInit() {
+  ngOnInit() {}
+  searchImages(query: string) {
+    return this.image.getImages(query).subscribe(data => {
+      console.log(data),
+        error => console.log(error),
+        () => console.log('Request Completed');
+    });
   }
-
 }
