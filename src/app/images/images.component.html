@@ -1,1 +1,18 @@
-<button (click)="searchImages('New York')">Find Images</button>
+<input
+  class="search"
+  [(ngModel)]="searchQuery"
+  placeholder="Search For Images"
+/>
+<button (click)="searchImages(searchQuery)">Find Images</button>
+
+<p *ngIf="searching">Fetching Data...</p>
+
+<div *ngFor="let image of images">
+  <img src="{{ image.webformatURL }}" />
+  <p>Comment: {{ image.comments }}</p>
+  <p>favorites: {{ image.favorites }}</p>
+  <p>likes: {{ image.likes }}</p>
+  <p>views: {{ image.views }}</p>
+  <p>pageURL: {{ image.pageURL }}</p>
+  <p>previewURL: {{ image.previewURL }}</p>
+</div>
