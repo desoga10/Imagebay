@@ -1,1 +1,70 @@
-<button (click)="searchImages('New York')">Find Images</button>
+<h1 class="pt-5">
+  Using Pixabay API To Create An Image Search Engine
+</h1>
+<div class="search-wrapper">
+  <form>
+    <input
+      type="text"
+      name="focus"
+      required
+      class="search-box"
+      placeholder="Enter search term"
+      [(ngModel)]="searchQuery"
+    />
+    <button class="close-icon" type="reset"></button>
+    <button
+      type="button"
+      class="btn btn-info ml-2"
+      (click)="searchImages(searchQuery)"
+    >
+      Find
+    </button>
+  </form>
+</div>
+
+<div class="container">
+  <div class="card mb-5 mt-5" *ngFor="let image of images">
+    <img
+      class="card-img-top"
+      src="{{ image.webformatURL }}"
+      alt="Card image cap"
+    />
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">
+        This is a wider card with supporting text below as a natural lead-in to
+        additional content. This content is a little bit longer.
+      </p>
+
+      <button type="button" class="btn btn-primary cursor">
+        Comment <span class="badge badge-light"> {{ image.comments }}</span>
+      </button>
+      <button type="button" class="btn btn-secondary cursor float-right">
+        favorites <span class="badge badge-light"> {{ image.favorites }}</span>
+      </button>
+      <button type="button" class="btn btn-success cursor ml-5">
+        likes <span class="badge badge-light"> {{ image.likes }}</span>
+      </button>
+      <br />
+      <button type="button" class="btn btn-info cursor mt-5  ml-5">
+        views <span class="badge badge-light"> {{ image.views }}</span>
+      </button>
+      <a href="{{ image.pageURL }}" target="_bank">
+        <button type="button" class="btn btn-light mt-5  ml-5">
+          pageURL <span class="badge badge-light"> {{ image.pageURL }}</span>
+        </button>
+      </a>
+      <a href="{{ image.previewURL }}" target="_bank">
+        <button type="button" class="btn btn-danger mt-5  float-right">
+          previewURL
+          <span class="badge badge-light"> {{ image.previewURL }}</span>
+        </button>
+      </a>
+    </div>
+    <div
+      class="card-footer bg-transparent border-success float-right text-center"
+    >
+      <a href="https://twitter.com/done2stay" target="_blank">@DESOGA</a>
+    </div>
+  </div>
+</div>
