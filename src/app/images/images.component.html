@@ -1,61 +1,70 @@
-<!-- <input
-  class="search"
-  [(ngModel)]="searchQuery"
-  placeholder="Search For Images"
-/>
-<button (click)="searchImages(searchQuery)">Find Images</button>
-
-
-<div *ngFor="let image of images">
-  <img src="{{ image.webformatURL }}" />
-  <p>Comment: {{ image.comments }}</p>
-  <p>favorites: {{ image.favorites }}</p>
-  <p>likes: {{ image.likes }}</p>
-  <p>views: {{ image.views }}</p>
-  <p>pageURL: {{ image.pageURL }}</p>
-  <p>previewURL: {{ image.previewURL }}</p>
-</div> -->
-
-<mat-card>
-  <mat-input-container>
-      <input
-      class="search" matInput
+<h1 class="pt-5">
+  Using Pixabay API To Create An Image Search Engine
+</h1>
+<div class="search-wrapper">
+  <form>
+    <input
+      type="text"
+      name="focus"
+      required
+      class="search-box"
+      placeholder="Enter search term"
       [(ngModel)]="searchQuery"
-      name="searchQuery"
-      placeholder="Search For Images"
     />
-  </mat-input-container>
-  <button (click)="searchImages(searchQuery)" mat-raised-button class="searchButton">Find Images</button>
-
-</mat-card>
-
-<div *ngIf="searching">
-  <mat-progress-bar mode="intermediate">
-
-  </mat-progress-bar>
+    <button class="close-icon" type="reset"></button>
+    <button
+      type="button"
+      class="btn btn-info ml-2"
+      (click)="searchImages(searchQuery)"
+    >
+      Find
+    </button>
+  </form>
 </div>
 
-<mat-card>
-    <h4 *ngIf="imagesFound" mat-subeader>Results</h4>
-    <masonry [useImagesLoaded]="true">
-      <masonry-brick *ngFor="let image of images" class=image-container>
-        <mat-card>
-          <a href="{{ image.pageURL }}" target="_bank">
-            <mat-card-header>
-              <div class="avatar" mat-card-avatar [ngStyle]="{'background-image':'url('+ image.userImageURL +')', 'background-size':'40px 40px'}"></div>
-              <mat-card-title>User: {{ image.user }}</mat-card-title>
-            </mat-card-header>
-            <img mat-card-image src="{{image.webformatURL}}">
-            <mat-card-content>
-              <p>Tags: {{ image.tags }}</p>
-              <p>Views: {{ views.favorites }}</p>            
-              <p>Likes: {{ image.likes }}</p>
-              <p>Favourites: {{ image.favorites }}</p>
-              <p>Comments: {{ image.comments }}</p>
-            </mat-card-content>
-          </a>
-        </mat-card>
-        <br><br>
-      </masonry-brick>
-    </masonry>
-  </mat-card>
+<div class="container">
+  <div class="card mb-5 mt-5" *ngFor="let image of images">
+    <img
+      class="card-img-top"
+      src="{{ image.webformatURL }}"
+      alt="Card image cap"
+    />
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">
+        This is a wider card with supporting text below as a natural lead-in to
+        additional content. This content is a little bit longer.
+      </p>
+
+      <button type="button" class="btn btn-primary cursor">
+        Comment <span class="badge badge-light"> {{ image.comments }}</span>
+      </button>
+      <button type="button" class="btn btn-secondary cursor float-right">
+        favorites <span class="badge badge-light"> {{ image.favorites }}</span>
+      </button>
+      <button type="button" class="btn btn-success cursor ml-5">
+        likes <span class="badge badge-light"> {{ image.likes }}</span>
+      </button>
+      <br />
+      <button type="button" class="btn btn-info cursor mt-5  ml-5">
+        views <span class="badge badge-light"> {{ image.views }}</span>
+      </button>
+      <a href="{{ image.pageURL }}" target="_bank">
+        <button type="button" class="btn btn-light mt-5  ml-5">
+          pageURL <span class="badge badge-light"> {{ image.pageURL }}</span>
+        </button>
+      </a>
+      <a href="{{ image.previewURL }}" target="_bank">
+        <button type="button" class="btn btn-danger mt-5  float-right">
+          previewURL
+          <span class="badge badge-light"> {{ image.previewURL }}</span>
+        </button>
+      </a>
+    </div>
+    <div
+      class="card-footer bg-transparent border-success float-right text-center"
+    >
+      <a href="https://twitter.com/done2stay" target="_blank">@DESOGA</a>
+    </div>
+  </div>
+</div>
