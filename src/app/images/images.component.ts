@@ -10,6 +10,7 @@ export class ImagesComponent implements OnInit {
   images: any[];
   imagesFound: boolean = false;
   searching: boolean = false;
+  searchQuery: any;
   constructor(private image: ImageService) {}
 
   ngOnInit() {}
